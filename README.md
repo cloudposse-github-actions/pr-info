@@ -1,6 +1,7 @@
 <!-- markdownlint-disable -->
-# PR Info <a href="https://cpco.io/homepage?utm_source=github&utm_medium=readme&utm_campaign=cloudposse-github-actions/pr-info&utm_content="><img align="right" src="https://cloudposse.com/logo-300x69.svg" width="150" /></a>
-<a href="https://github.com/cloudposse-github-actions/pr-info/releases/latest"><img src="https://img.shields.io/github/release/cloudposse-github-actions/pr-info.svg" alt="Latest Release"/></a><a href="https://slack.cloudposse.com"><img src="https://slack.cloudposse.com/badge.svg" alt="Slack Community"/></a>
+<a href="https://cpco.io/homepage"><img src=".github/banner.png?raw=true" alt="Project Banner"/></a><br/>
+    <p align="right">
+<a href="https://github.com/cloudposse-github-actions/pr-info/releases/latest"><img src="https://img.shields.io/github/release/cloudposse-github-actions/pr-info.svg" alt="Latest Release"/></a><a href="https://slack.cloudposse.com"><img src="https://slack.cloudposse.com/badge.svg" alt="Slack Community"/></a></p>
 <!-- markdownlint-restore -->
 
 <!--
