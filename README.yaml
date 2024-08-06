@@ -1,0 +1,76 @@
+# Name of this project
+name: PR Info
+
+# Tags of this project
+tags:
+  - github-action
+
+# Logo for this project
+#logo: docs/logo.png
+
+# License of this project
+license: "GPL-3.0"
+
+# Canonical GitHub repo
+github_repo: cloudposse-github-actions/pr-info
+
+# Badges to display
+badges:
+  - name: "Latest Release"
+    image: "https://img.shields.io/github/release/cloudposse-github-actions/pr-info.svg"
+    url: "https://github.com/cloudposse-github-actions/pr-info/releases/latest"
+  - name: "Slack Community"
+    image: "https://slack.cloudposse.com/badge.svg"
+    url: "https://slack.cloudposse.com"
+
+related: []
+
+# Short description of this project
+description: |
+  Get the PR info associated with the commit.
+
+author: hello@cloudposse.com
+
+introduction: |-
+  Fork of [8BitJonny/gh-get-current-pr](https://github.com/8BitJonny/gh-get-current-pr) adopted to Cloud Posse's GitHub Actions standards. 
+
+references: []
+
+# How to use this project
+usage: |-
+  ```yaml
+    on:
+      push:
+        branches:
+          - main
+
+    jobs:
+      pr:
+        name: PR Info
+        runs-on: ubuntu-latest
+        steps:
+          - uses: cloudposse-github-actions/pr-info@v0
+            id: pr
+        outputs:
+          base: ${{ fromJSON(steps.pr.outputs.pr).base.sha }}
+          head: ${{ fromJSON(steps.pr.outputs.pr).head.sha }}
+          found: ${{ steps.pr.outputs.found }}
+          json: ${{ steps.pr.outputs.json }}
+          number: ${{ steps.pr.outputs.number }}
+          title: ${{ steps.pr.outputs.title }}
+          body: ${{ steps.pr.outputs.body }}
+          url: ${{ steps.pr.outputs.url }}
+          created_at: ${{ steps.pr.outputs.created_at }}
+          merged_at: ${{ steps.pr.outputs.merged_at }}
+          closed_at: ${{ steps.pr.outputs.closed_at }}
+          labels: ${{ steps.pr.outputs.labels }}
+  ```
+include:
+  - "docs/github-action.md"
+
+# Contributors to this project
+contributors:
+  - name: "Timon Christiansen"
+    github: "8BitJonny"
+  - name: "Igor Rodionov"
+    github: "goruha"

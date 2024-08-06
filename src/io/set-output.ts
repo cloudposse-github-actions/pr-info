@@ -7,16 +7,16 @@ function setOutputWithDebug(key: string, value: unknown): void {
 }
 
 export default function setOutput(pr: PR | null): void {
-  setOutputWithDebug('pr_found', !!pr)
+  setOutputWithDebug('found', !!pr)
   if (pr) {
     setOutputWithDebug('number', pr.number.toString())
-    setOutputWithDebug('pr', JSON.stringify(pr))
-    setOutputWithDebug('pr_title', pr.title)
-    setOutputWithDebug('pr_body', pr.body)
-    setOutputWithDebug('pr_url', pr.html_url)
-    setOutputWithDebug('pr_created_at', pr.created_at)
-    setOutputWithDebug('pr_merged_at', pr.merged_at)
-    setOutputWithDebug('pr_closed_at', pr.closed_at)
-    setOutputWithDebug('pr_labels', pr.labels.map(e => e.name).join(','))
+    setOutputWithDebug('json', JSON.stringify(pr))
+    setOutputWithDebug('title', pr.title)
+    setOutputWithDebug('body', pr.body)
+    setOutputWithDebug('url', pr.html_url)
+    setOutputWithDebug('created_at', pr.created_at)
+    setOutputWithDebug('merged_at', pr.merged_at)
+    setOutputWithDebug('closed_at', pr.closed_at)
+    setOutputWithDebug('labels', pr.labels.map(e => e.name).join(','))
   }
 }
