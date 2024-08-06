@@ -35,61 +35,53 @@ jobs:
       - name: run unit tests
         run: yarn test
 
-  integration-test-single:
-    name: "integration test: single setting"
+  test-if-closed-pr-is-found:
     runs-on: ubuntu-latest
-    needs: check-dist
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-      - uses: actions/setup-node@v4
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: Build Action
+        run: |
+          npm run build
+          npm run package
+      - name: Run Action
+        uses: ./
+        id: pr
         with:
-          node-version-file: package.json
-          cache: yarn
-      - uses: cloudposse/github-action-setup-atmos@v2
-        with:
-          install-wrapper: false
-      - uses: ./
-        id: get-setting
-        with:
-          component: foo
-          stack: core-ue1-dev
-          settings-path: atmos_cli_config.components.terraform.base_path
-      - uses: nick-fields/assert-action@v2
-        with:
-          expected: "components/terraform"
-          actual: ${{ steps.get-setting.outputs.value}}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          sha: "44b060a85b83f5baf49f523d8a58444ccca52ead"
+      - name: Assert PR properties
+        run: |
+          [[ ${{ steps.pr.outputs.pr_found }} == true ]] || (echo "outputs.pr_found != true"; exit 1)
+          [[ ${{ steps.pr.outputs.number }} == 5 ]] || (echo "outputs.number != 5"; exit 1)
 
-  integration-test-multiple:
-    name: "integration test: multiple settings"
+  test-if-closed-pr-is-not-found-when-filtering-closed-prs:
     runs-on: ubuntu-latest
-    needs: check-dist
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-      - uses: actions/setup-node@v4
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: Build Action
+        run: |
+          npm run build
+          npm run package
+      - name: Run Action
+        uses: ./
+        id: pr
         with:
-          node-version-file: package.json
-          cache: yarn
-      - uses: cloudposse/github-action-setup-atmos@v2
-        with:
-          install-wrapper: false
-      - uses: ./
-        id: get-setting
-        with:
-          settings: |
-            - component: foo
-              stack: core-ue1-dev
-              settingsPath: atmos_cli_config.components.terraform.base_path
-              outputPath: prop1
-            - component: foo
-              stack: core-ue1-dev
-              settingsPath: settings.level1.level2.level3.secrets-arn
-              outputPath: prop2
-
-      - uses: nick-fields/assert-action@v2
-        with:
-          expected: '{"prop1":"components/terraform","prop2":"arn:aws:secretsmanager:us-east-1:000000000000:secret:MySecret-PlMes3"}'
-          actual: ${{ steps.get-setting.outputs.settings}}
+          filterOutClosed: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          sha: "44b060a85b83f5baf49f523d8a58444ccca52ead"
+      - name: Exit 1, if PR was falsely found
+        if: steps.pr.outputs.pr_found != 'false'
+        run: echo "if 'outputs.pr_found' falsely triggered"; exit 1
+      - name: Assert PR properties
+        run: |
+          [[ '${{ steps.pr.outputs.number }}' == '' ]] || (echo "PR falsely found"; exit 1)
