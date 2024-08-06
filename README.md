@@ -70,7 +70,7 @@ Fork of [8BitJonny/gh-get-current-pr](https://github.com/8BitJonny/gh-get-curren
       name: PR Info
       runs-on: ubuntu-latest
       steps:
-        - uses: cloudposse-github-actions/get-pr@v0
+        - uses: cloudposse-github-actions/get-pr@main
           id: pr
       outputs:
         base: ${{ fromJSON(steps.pr.outputs.pr).base.sha }}
