@@ -1,6 +1,6 @@
 {
-  "name": "actiongetcurrentpr",
-  "version": "3.0.0",
+  "name": "pr-info",
+  "version": "0.1.0",
   "description": "Github Action for getting the current PR if the commit belongs to one",
   "main": "lib/main.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "Javascript"
   ],
   "author": "8BitJonny",
-  "license": "SEE LICENSE IN LICENSE file",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/cloudposse-github-actions/pr-info/issues"
   },
