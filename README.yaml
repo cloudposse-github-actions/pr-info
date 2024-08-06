@@ -1,11 +1,5 @@
----
-#
-# This is the canonical configuration for the `README.md`
-# Run `make readme` to rebuild the `README.md`
-#
-
 # Name of this project
-name: README Generator
+name: PR Info
 
 # Tags of this project
 tags:
@@ -15,16 +9,16 @@ tags:
 #logo: docs/logo.png
 
 # License of this project
-license: "APACHE2"
+license: "GPL-3.0"
 
 # Canonical GitHub repo
-github_repo: cloudposse-github-actions/readme
+github_repo: cloudposse-github-actions/pr-info
 
 # Badges to display
 badges:
   - name: "Latest Release"
-    image: "https://img.shields.io/github/release/cloudposse-github-actions/readme.svg"
-    url: "https://github.com/cloudposse-github-actions/readme/releases/latest"
+    image: "https://img.shields.io/github/release/cloudposse-github-actions/pr-info.svg"
+    url: "https://github.com/cloudposse-github-actions/pr-info/releases/latest"
   - name: "Slack Community"
     image: "https://slack.cloudposse.com/badge.svg"
     url: "https://slack.cloudposse.com"
@@ -33,88 +27,50 @@ related: []
 
 # Short description of this project
 description: |
-  Rebuilds [`README.md`](README.md) and associated banners from templates using the [`README.yaml`](README.yaml) metadata.
+  Get the PR info associated with the commit.
 
 author: hello@cloudposse.com
 
 introduction: |-
-  This opinionated implementation builds upon Cloud Posse's build-harness and README.yaml
-  used throughout Cloud Posse's GitHub repositories.
+  Fork of [8BitJonny/gh-get-current-pr](https://github.com/8BitJonny/gh-get-current-pr) adopted to Cloud Posse's GitHub Actions standards. 
 
-references:
-  - name: "screenshot"
-    description: ""
-    url: "https://github.com/cloudposse-github-actions/screenshot"
+references: []
 
 # How to use this project
 usage: |-
-  To use this project, follow these steps:
-
-  Add the following code to your workflow file (e.g., `.github/workflows/readme.yml`):
-
   ```yaml
-  name: README
-  on:
-    pull_request:
-      branches: [ 'main' ]
-      types: [opened, synchronize, reopened, closed, labeled, unlabeled]
-
-  jobs:
-    generate:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Rebuild README.md and Banner
-          uses: cloudposse-github-actions/readme@v0
-          id: readme
-          with:
-            banner_enabled: true
-            readme_enabled: true
-
-      outputs:
-        banner_file: ${{ steps.readme.outputs.banner_file }}
-        readme_file: ${{ steps.readme.outputs.readme_file }}
-  ```
-
-  ## Advanced Usage
-
-  In the following example, we use the `workflow_dispatch` event to allow manual triggering of the workflow to rebuild the readme.  
-  We also use the `pull_request` event to register the workflow from the PR. This allows us to test the workflow before merging
-  it to the main branch.
-
-  ```yaml
-    name: README
     on:
-      # Allow manual triggering of workflow to rebuild readme
-      workflow_dispatch: {}
-
-      ## Added pull_request to register workflow from the PR.
-      ## Read more https://stackoverflow.com/questions/63362126/github-actions-how-to-run-a-workflow-created-on-a-non-master-branch-from-the-wo
-      pull_request:
-        branches-ignore: ['*']
-
-    schedule:
-      # Update README.md nightly at 4am UTC
-      #         .---------------- minute (0 - 59)
-      #         |  .------------- hour (0 - 23)
-      #         |  |  .---------- day of month (1 - 31)
-      #         |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
-      #         |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
-      #         |  |  |  |  |
-      - cron:  '0  4  *  *  *'
+      push:
+        branches:
+          - main
 
     jobs:
-      generate:
+      pr:
+        name: PR Info
         runs-on: ubuntu-latest
         steps:
-          - name: Rebuild README.md and Banner
-            uses: cloudposse-github-actions/readme@v0
-            id: readme
-            with:
-              banner_enabled: true
-              readme_enabled: true
+          - uses: cloudposse-github-actions/pr-info@v0
+            id: pr
+        outputs:
+          base: ${{ fromJSON(steps.pr.outputs.pr).base.sha }}
+          head: ${{ fromJSON(steps.pr.outputs.pr).head.sha }}
+          found: ${{ steps.pr.outputs.found }}
+          json: ${{ steps.pr.outputs.json }}
+          number: ${{ steps.pr.outputs.number }}
+          title: ${{ steps.pr.outputs.title }}
+          body: ${{ steps.pr.outputs.body }}
+          url: ${{ steps.pr.outputs.url }}
+          created_at: ${{ steps.pr.outputs.created_at }}
+          merged_at: ${{ steps.pr.outputs.merged_at }}
+          closed_at: ${{ steps.pr.outputs.closed_at }}
+          labels: ${{ steps.pr.outputs.labels }}
   ```
 include:
   - "docs/github-action.md"
 
 # Contributors to this project
-contributors: []
+contributors:
+  - name: "Timon Christiansen"
+    github: "8BitJonny"
+  - name: "Igor Rodionov"
+    github: "goruha"

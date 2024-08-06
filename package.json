@@ -24,9 +24,9 @@
   "author": "8BitJonny",
   "license": "SEE LICENSE IN LICENSE file",
   "bugs": {
-    "url": "https://github.com/8BitJonny/gh-get-current-pr/issues"
+    "url": "https://github.com/cloudposse-github-actions/pr-info/issues"
   },
-  "homepage": "https://github.com/8BitJonny/gh-get-current-pr#readme",
+  "homepage": "https://github.com/cloudposse-github-actions/pr-info/issues#readme",
   "dependencies": {
     "@actions/core": "^1.10.0",
     "@actions/github": "^5.1.1"
