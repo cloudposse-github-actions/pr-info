@@ -1,5 +1,5 @@
 # Name of this project
-name: PR Info
+name: Get PR
 
 # Tags of this project
 tags:
@@ -46,7 +46,7 @@ usage: |-
         name: PR Info
         runs-on: ubuntu-latest
         steps:
-          - uses: cloudposse-github-actions/get-pr@v0
+          - uses: cloudposse-github-actions/get-pr@main
             id: pr
         outputs:
           base: ${{ fromJSON(steps.pr.outputs.pr).base.sha }}
