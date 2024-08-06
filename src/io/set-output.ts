@@ -7,7 +7,7 @@ function setOutputWithDebug(key: string, value: unknown): void {
 }
 
 export default function setOutput(pr: PR | null): void {
-  setOutputWithDebug('pr_found', !!pr)
+  setOutputWithDebug('found', !!pr)
   if (pr) {
     setOutputWithDebug('number', pr.number.toString())
     setOutputWithDebug('json', JSON.stringify(pr))
