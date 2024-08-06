@@ -47,7 +47,6 @@ jobs:
       - name: Build Action
         run: |
           npm run build
-          npm run package
       - name: Run Action
         uses: ./
         id: pr
@@ -71,7 +70,6 @@ jobs:
       - name: Build Action
         run: |
           npm run build
-          npm run package
       - name: Run Action
         uses: ./
         id: pr
