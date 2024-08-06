@@ -16,25 +16,25 @@ inputs:
     description: True, False, 1 or 0 if only non-draft PRs should be returned. Defaults to false.
     required: false
 outputs:
-  pr_found:
+  found:
     description: The outcome if a PR has been found. If so, the other outputs are set.
-  pr:
+  json:
     description: The whole PR object if one was found.
   number:
     description: The PR number if one was found.
-  pr_title:
+  title:
     description: The PR Title if one was found.
-  pr_body:
+  body:
     description: The PR Body if one was found.
-  pr_url:
+  url:
     description: The PR Url if one was found.
-  pr_created_at:
+  created_at:
     description: The PR Created timestamp if one was found.
-  pr_merged_at:
+  merged_at:
     description: The PR Merged timestamp if one was found.
-  pr_closed_at:
+  closed_at:
     description: The PR Closed timestamp if one was found.
-  pr_labels:
+  labels:
     description: The PR Labels if any was found.
 runs:
   using: node20
