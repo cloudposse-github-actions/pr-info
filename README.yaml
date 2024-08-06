@@ -5,9 +5,6 @@ name: PR Info
 tags:
   - github-action
 
-# Logo for this project
-#logo: docs/logo.png
-
 # License of this project
 license: "GPL-3.0"
 
