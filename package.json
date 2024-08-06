@@ -22,7 +22,7 @@
     "Javascript"
   ],
   "author": "8BitJonny",
-  "license": "SEE LICENSE IN LICENSE file",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/cloudposse-github-actions/pr-info/issues"
   },
