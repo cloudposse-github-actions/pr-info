@@ -1,6 +1,6 @@
-name: Get Current Pull Request
+name: PR Info
 author: 8BitJonny
-description: Get the PR associated with the current commit.
+description: Get the PR info associated with the current commit.
 inputs:
   github-token:
     description: The GitHub token used to create an authenticated client.
@@ -41,4 +41,4 @@ runs:
   main: 'dist/index.js'
 branding:
   icon: git-pull-request
-  color: green
+  color: white

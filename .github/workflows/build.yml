@@ -23,6 +23,7 @@ jobs:
       - run: npm ci
       - run: |
           npm run build
+
   clean-run: # make sure the action works on a clean machine without building
     runs-on: ubuntu-latest
     steps:
@@ -30,6 +31,7 @@ jobs:
       - uses: ./
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
   lint:
     runs-on: ubuntu-latest
     steps:
