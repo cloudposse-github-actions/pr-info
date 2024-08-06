@@ -9,13 +9,13 @@ tags:
 license: "GPL-3.0"
 
 # Canonical GitHub repo
-github_repo: cloudposse-github-actions/pr-info
+github_repo: cloudposse-github-actions/get-pr
 
 # Badges to display
 badges:
   - name: "Latest Release"
-    image: "https://img.shields.io/github/release/cloudposse-github-actions/pr-info.svg"
-    url: "https://github.com/cloudposse-github-actions/pr-info/releases/latest"
+    image: "https://img.shields.io/github/release/cloudposse-github-actions/get-pr.svg"
+    url: "https://github.com/cloudposse-github-actions/get-pr/releases/latest"
   - name: "Slack Community"
     image: "https://slack.cloudposse.com/badge.svg"
     url: "https://slack.cloudposse.com"
@@ -46,7 +46,7 @@ usage: |-
         name: PR Info
         runs-on: ubuntu-latest
         steps:
-          - uses: cloudposse-github-actions/pr-info@v0
+          - uses: cloudposse-github-actions/get-pr@v0
             id: pr
         outputs:
           base: ${{ fromJSON(steps.pr.outputs.pr).base.sha }}

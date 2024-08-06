@@ -1,4 +1,4 @@
-name: pr-info
+name: Get PR
 author: 8BitJonny
 description: Get the PR info associated with the current commit.
 inputs:

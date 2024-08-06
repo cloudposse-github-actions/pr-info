@@ -1,5 +1,5 @@
 {
-  "name": "pr-info",
+  "name": "get-pr",
   "version": "0.1.0",
   "description": "Github Action for getting the current PR if the commit belongs to one",
   "main": "lib/main.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cloudposse-github-actions/pr-info.git"
+    "url": "git+https://github.com/cloudposse-github-actions/get-pr.git"
   },
   "keywords": [
     "Github",
@@ -24,9 +24,9 @@
   "author": "8BitJonny",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/cloudposse-github-actions/pr-info/issues"
+    "url": "https://github.com/cloudposse-github-actions/get-pr/issues"
   },
-  "homepage": "https://github.com/cloudposse-github-actions/pr-info/issues#readme",
+  "homepage": "https://github.com/cloudposse-github-actions/get-pr/issues#readme",
   "dependencies": {
     "@actions/core": "^1.10.0",
     "@actions/github": "^5.1.1"
